@@ -1,15 +1,10 @@
-/**
- * Шифр Виженера с прямым ключом (русский язык).
- * Ключ повторяется для совпадения длины текста.
- */
+// Шифр Виженера с прямым ключом (русский язык), ключ повторяется для совпадения длины текста
 public class VigenereCipher {
 
-    /** Русский алфавит с Ё (33 буквы) */
+    // Русский алфавит с Ё (33 буквы)
     private static final String ALPHABET_FULL = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
 
-    /**
-     * Подготовка текста: только русские буквы (включая Ё)
-     */
+    // Подготовка текста: только русские буквы (включая Ё)
     public String prepareText(String text) {
         return text.toUpperCase().replaceAll("[^А-Яа-яЁё]", "");
     }
@@ -28,9 +23,7 @@ public class VigenereCipher {
         return ALPHABET_FULL.charAt((idx + ALPHABET_FULL.length()) % ALPHABET_FULL.length());
     }
 
-    /**
-     * Шифрование Виженера (прямой ключ)
-     */
+    // Шифрование Виженера (прямой ключ)
     public String encrypt(String text, String key) {
         key = prepareKey(key);
         text = prepareText(text);
@@ -45,9 +38,7 @@ public class VigenereCipher {
         return result.toString();
     }
 
-    /**
-     * Дешифрование Виженера
-     */
+    // Дешифрование Виженера
     public String decrypt(String text, String key) {
         key = prepareKey(key);
         text = prepareText(text);

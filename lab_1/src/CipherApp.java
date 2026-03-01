@@ -5,11 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-/**
- * Вариант 11: Шифрование/дешифрование текста.
- * - Шифр Плейфера с 4 таблицами (английский)
- * - Шифр Виженера с прямым ключом (русский)
- */
+// Вариант 11: Шифрование/дешифрование, Плейфер (4 таблицы, англ.), Виженер (прямой ключ, рус.)
 public class CipherApp extends JFrame {
     private final PlayfairCipher playfair = new PlayfairCipher();
     private final VigenereCipher vigenere = new VigenereCipher();
@@ -75,16 +71,22 @@ public class CipherApp extends JFrame {
         main.add(center, BorderLayout.CENTER);
 
         JPanel bottom = new JPanel(new BorderLayout(0, 8));
-        JPanel buttons = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
+        JPanel buttons = new JPanel(new GridLayout(2, 1, 0, 5));
+        JPanel row1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        JPanel row2 = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
         JButton loadBtn = new JButton("Прочитать из файла");
         JButton saveBtn = new JButton("Сохранить в файл");
         JButton encryptBtn = new JButton("Шифровать");
         JButton decryptBtn = new JButton("Дешифровать");
         JButton clearBtn = new JButton("Очистить всё");
-        for (JButton b : new JButton[]{loadBtn, saveBtn, encryptBtn, decryptBtn, clearBtn}) {
+        for (JButton b : new JButton[]{loadBtn, saveBtn, encryptBtn, decryptBtn}) {
             b.setFont(font14);
-            buttons.add(b);
+            row1.add(b);
         }
+        clearBtn.setFont(font14);
+        row2.add(clearBtn);
+        buttons.add(row1);
+        buttons.add(row2);
         loadBtn.addActionListener(e -> loadFromFile());
         saveBtn.addActionListener(e -> saveToFile());
         encryptBtn.addActionListener(e -> encrypt());
@@ -106,7 +108,6 @@ public class CipherApp extends JFrame {
         p.add(new JLabel("Ключ (рус.):"));
         vigenereKeyField = new JTextField(30);
         vigenereKeyField.setFont(font);
-        vigenereKeyField.setText("КЛЮЧ");
         p.add(vigenereKeyField);
         return p;
     }
@@ -118,10 +119,6 @@ public class CipherApp extends JFrame {
         playfairKey2 = new JTextField(20);
         playfairKey3 = new JTextField(20);
         playfairKey4 = new JTextField(20);
-        playfairKey1.setText("CRYPTO");
-        playfairKey2.setText("GRAPHY");
-        playfairKey3.setText("SECURE");
-        playfairKey4.setText("MESSAGE");
         for (JTextField f : new JTextField[]{playfairKey1, playfairKey2, playfairKey3, playfairKey4}) {
             f.setFont(font);
         }
@@ -221,11 +218,11 @@ public class CipherApp extends JFrame {
     private void clearAll() {
         inputArea.setText("");
         outputArea.setText("");
-        vigenereKeyField.setText("КЛЮЧ");
-        playfairKey1.setText("CRYPTO");
-        playfairKey2.setText("GRAPHY");
-        playfairKey3.setText("SECURE");
-        playfairKey4.setText("MESSAGE");
+        vigenereKeyField.setText("");
+        playfairKey1.setText("");
+        playfairKey2.setText("");
+        playfairKey3.setText("");
+        playfairKey4.setText("");
         showStatus("Поля очищены");
     }
 
