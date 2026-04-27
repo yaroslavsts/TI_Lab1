@@ -6,6 +6,8 @@ out/
 **/out/
 *.class
 *.app/
+!TI_Lab3/JavaRSA.app/
+!TI_Lab3/JavaRSA.app/**
 **/release/
 **/dist/
 **/runtime-lite/
