@@ -5,6 +5,14 @@
 out/
 **/out/
 *.class
+*.app/
+**/release/
+**/dist/
+**/runtime-lite/
+**/FinalApp/
+**/FinalExec/
+**/release-native/
+**/*.jar
 
 # IntelliJ — локальные/персональные файлы (остальной .idea можно коммитить)
 **/.idea/workspace.xml
